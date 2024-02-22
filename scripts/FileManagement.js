@@ -1,5 +1,5 @@
-!INC Local Scripts.EAConstants-JavaScript
-!INC EAScriptLib.JavaScript-Logging
+//!INC Local Scripts.EAConstants-JavaScript
+//!INC EAScriptLib.JavaScript-Logging
 
 var _Win32Import_FSREAD = 1;
 
@@ -9,6 +9,5 @@ var _Win32Import_FSREAD = 1;
  * Purpose: Reading, writing and parsing JSON files
  * Date: 21.02.2024
  */
- 
 function readFile(filePath){
-}
+};
