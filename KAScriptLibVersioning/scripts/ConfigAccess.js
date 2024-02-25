@@ -1,7 +1,7 @@
 !INC Local Scripts.EAConstants-JavaScript
 
 /* 
- * Script Name: ConfigAccess
+ * Script Name: PathAccess
  * Author: Ingmar Kuehl
  * Purpose: Accessing the Environment variables for config files
  * Date: 21.02.2024
@@ -12,13 +12,25 @@
  */
 const ConfigEV = "%EA_Script%";
 
-/**
- * @brief Retrieve the absolute config file path
- * @return {string} The absolute config file path
- */
-function getConfigPath(){
-	var wshShell = new COMObject("WScript.Shell");
-	var configPath = wshShell.ExpandEnvironmentStrings(ConfigEV);
-	
-	return configPath;
+class PathAccess{
+
+	/**
+	 *  @brief Retrieve the value of an environment variables
+	 *  @param[in] {string} evName environment variable name
+	 */
+	getValueforEV(evName){
+		var wshShell = new COMObject("WScript.Shell");
+		var pathValue = wshShell.ExpandEnvironmentStrings(evName);
+
+		return pathValue;
+	}
+
+	/**
+ 	* @brief Retrieve the absolute config file path
+ 	* @return {string} The absolute config file path
+ 	*/
+	getConfigPath(){
+		return getValueForEV(ConfigEV);
+	}
+
 }
