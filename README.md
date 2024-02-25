@@ -10,9 +10,10 @@ In the moment following functionality is implemented:
 - reading JSON configuration files
 - writing JSON files
 - logging with timestamp and to files
+- Accessing environment variables
 - Executing queries in the model database
 - parsing recursively model trees
 - parsing DOM trees as a result of database query
 - showing Windows dialogues
 - adding traces through connections between different flavours of requirements and between requirements and design elements
-- removing Version Control flag from packages
+- removing Version Control flag from packages.
