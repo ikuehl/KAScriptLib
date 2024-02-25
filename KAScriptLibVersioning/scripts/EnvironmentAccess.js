@@ -1,9 +1,9 @@
 !INC Local Scripts.EAConstants-JavaScript
 
 /* 
- * Script Name: PathAccess
+ * Script Name: EnvironmentAccess
  * Author: Ingmar Kuehl
- * Purpose: Accessing the Environment variables for config files
+ * Purpose: Accessing the Environment variables (e.g. for config files)
  * Date: 21.02.2024
 */
 
@@ -12,7 +12,7 @@
  */
 const ConfigEV = "%EA_Script%";
 
-class PathAccess{
+class EnvironmentAccess{
 
 	/**
 	 *  @brief Retrieve the value of an environment variables
