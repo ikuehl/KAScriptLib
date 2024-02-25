@@ -8,6 +8,17 @@
 */
 
 /**
- * @brief Config file path
+ * @brief Environment variable for config path
  */
-const ConfigPath = "C:\\Entwicklung\\git\\versioning\\config.json";
+const ConfigEV = "%EA_Script%";
+
+/**
+ * @brief Retrieve the absolute config file path
+ * @return {string} The absolute config file path
+ */
+function getConfigPath(){
+	var wshShell = new COMObject("WScript.Shell");
+	var configPath = wshShell.ExpandEnvironmentStrings(ConfigEV);
+	
+	return configPath;
+}
