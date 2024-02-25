@@ -1,9 +1,9 @@
 !INC Local Scripts.EAConstants-JavaScript
 
 /* 
- * Script Name: GlobalConstants
+ * Script Name: ConfigAccess
  * Author: Ingmar Kuehl
- * Purpose: Definitions globally used throughout versioning removal
+ * Purpose: Accessing the Environment variables for config files
  * Date: 21.02.2024
 */
 
