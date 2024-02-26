@@ -1,12 +1,12 @@
+/**
+ * @file FileManagement
+ * Reading, writing and parsing JSON files
+ * @author Ingmar Kuehl, KUEHL AutomatisierungsTechnologie
+ * @date 2024-02-21
+ */
+ 
 !INC Local Scripts.EAConstants-JavaScript
 !INC EAScriptLib.JavaScript-Logging
-
-/* 
- * Script Name: FileManagement
- * Author: Ingmar Kuehl
- * Purpose: Reading, writing and parsing JSON files
- * Date: 21.02.2024
-*/
 
 var _Win32Import_FSREAD = 1;
 
@@ -40,21 +40,25 @@ class FileManagement {
 	/**
 	* @brief Write an array to a JSON file. Pretach a generated timestamp.
 	* @param[in] {string} filePath Absolute file name path for output generation
-	* @param[in] {Array} outputStringArr An array of array (parsed DOM items)
-	* @param[in] {EA.Package} startingPackage The starting package
+	* @param[in] {Map} argMap Map of ids and values to write. E.g. [{"startingPackage", EA.Package}, {"vcRes", Array}] 
 	*/
-	writeFile(filePath, outputStringArr, startingPackage) {
+	writeFile(filePath, argMap) {
 		var fsObject = new COMObject("Scripting.FileSystemObject");
 		var outFile = fsObject.CreateTextFile(filePath, true);
-		
-		LOGInfo("ResArr: " + outputStringArr);
-		
+				
 		const event = new Date(Date.now());
 		const jsonDate = event.toJSON();
-		const jsonPack = startingPackage;
-		var jsonText = JSON.stringify({date: jsonDate, startingPackage: jsonPack, vcRes: outputStringArr});
-			
-		outFile.WriteLine(jsonText);
+					
+		var newMap = new Map([
+			["date", jsonDate]
+		]);
+		for (const [key, value] of argMap.entries()) {
+			newMap.set(key, value);
+		}
+		const obj = Object.fromEntries(newMap);
+		const serialized = JSON.stringify(obj);
+		
+		outFile.WriteLine(serialized);
 		outFile.Close();
 	}
 }

@@ -1,11 +1,11 @@
-!INC Local Scripts.EAConstants-JavaScript
-
-/* 
- * Script Name: EnvironmentAccess
- * Author: Ingmar Kuehl
- * Purpose: Accessing the Environment variables (e.g. for config files)
- * Date: 21.02.2024
-*/
+/**
+ * @file EnvironmentAccess
+ *  Accessing the Environment variables (e.g. for config files)
+ * @author Ingmar Kuehl, KUEHL AutomatisierungsTechnologie
+ * @date 2024-02-21
+ */
+ 
+ !INC Local Scripts.EAConstants-JavaScript
 
 /**
  * @brief Environment variable for config path
