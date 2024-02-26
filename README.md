@@ -16,5 +16,4 @@ In the moment following functionality is implemented:
 - parsing DOM trees as a result of database query
 - showing Windows dialogues
 - adding traces through connections between different flavours of requirements and between requirements and design elements
-- removing Version Control flag from packages
-- unit testing.
+- removing Version Control flag from packages.
