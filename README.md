@@ -4,7 +4,7 @@ There have been already some scripting libraries for Enterprise Architect lift u
 <h2>Compatability</h2>
 The code is tested with EA 15.2 and 16.1. It runs in a local, file-based deployment and with a database (PostgreSQL) in ProCloud.
 
-<h2>Functionaliaty</h2>
+<h2>Functionality</h2>
 In the moment following functionality is implemented:
 
 - reading JSON configuration files
