@@ -11,12 +11,12 @@
 var _Win32Import_FSREAD = 1;
 
 /**
- *  @brief FileManagement
+ *  @description FileManagement
  */
 class FileManagement {
 
 	/**
-	* @brief Read a file and return the corresponding JSON object
+	* @description Read a file and return the corresponding JSON object
 	* @param[in] {string} filePath The absolute path to a JSON file
 	* @return {JSONObject}
 	*/
@@ -38,7 +38,7 @@ class FileManagement {
 	}
 
 	/**
-	* @brief Write an array to a JSON file. Pretach a generated timestamp.
+	* @description Write an array to a JSON file. Pretach a generated timestamp.
 	* @param[in] {string} filePath Absolute file name path for output generation
 	* @param[in] {Map} argMap Map of ids and values to write. E.g. [{"startingPackage", EA.Package}, {"vcRes", Array}] 
 	*/

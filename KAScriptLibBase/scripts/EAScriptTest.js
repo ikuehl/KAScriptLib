@@ -8,11 +8,20 @@
  */
 
 
+/**
+ * @namespace
+ * @ignore
+ */
 !INC Local Scripts.EAConstants-JavaScript
+
+/**
+ * @namespace
+ * @ignore
+ */
 !INC EAScriptLib.JavaScript-Logging
 
 /**
- * @brief Struct which contains the test handler function
+ * @description Struct which contains the test handler function
  */
 const EAScriptTest = {
 
@@ -37,7 +46,7 @@ const EAScriptTest = {
     },
 
 	/**
-	 * @brief Fail function 
+	 * @description Fail function 
 	 * @param[in] {string} msg Failure message text
 	 */	
     fail: function(msg) {

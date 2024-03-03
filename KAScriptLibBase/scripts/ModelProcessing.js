@@ -8,17 +8,25 @@
 !INC Local Scripts.EAConstants-JavaScript
 !INC EAScriptLib.JavaScript-Logging
  
- class ModelProcessing{
+ /**
+  * @description Class which provides methods to traverse tree
+  */
+ class ModelProcessing {
 	 
 	 /**
-	  * @brief Find 
+	  * @description Find a package
+	  * @param[in] {EA.Package} thePackage A package
+	  * @param[in] {Array} packagePathItems String array with path elements
 	  */
-	 findPackage(thePackage, packagePathItems){
-		 var foundPackages as EA.Collection = new Array();
-		 var foundPackagesIntern as EA.Collection;
+	 findPackage(thePackage, packagePathItems) {
+	 	var foundPackages as EA.Collection;
+		//foundPackages = new Array();
+		/* var foundPackagesIntern as EA.Collection;
 		 var foundPackage as EA.Package;
 		 var subPackageItems as EA.Collection;
 		 
 		 LOGDebug("Items: " + packagePathItems[0]);
+		 */
 	 }
+
  }
