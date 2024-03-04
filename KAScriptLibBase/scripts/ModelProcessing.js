@@ -20,13 +20,12 @@
 	  */
 	 findPackage(thePackage, packagePathItems) {
 	 	var foundPackages as EA.Collection;
-		//foundPackages = new Array();
-		/* var foundPackagesIntern as EA.Collection;
-		 var foundPackage as EA.Package;
-		 var subPackageItems as EA.Collection;
+		foundPackages = new Array();
+		var foundPackagesIntern as EA.Collection;
+		var foundPackage as EA.Package;
+		var subPackageItems as EA.Collection;
 		 
-		 LOGDebug("Items: " + packagePathItems[0]);
-		 */
+		LOGDebug("Items: " + packagePathItems[0]);
 	 }
 
  }
