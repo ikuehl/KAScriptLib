@@ -1,3 +1,4 @@
 out/*
 scripts/out/*
 *.json
+!KAScriptLibBase/documentation/jsdoc.json
