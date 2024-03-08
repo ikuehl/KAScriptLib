@@ -13,12 +13,44 @@
  * @description An example stub for preparation and teardown methods
  */
 class MyTestSuite extends TestSuite{
+	constructor(){
+		super();
+	}
+	
+	/**
+	 * @description Overloaded Setup routine 
+	 */
 	setup(){
 		Session.Output("Setup with standard output.");
 	}
-	
+		
+	/**
+	 * @description Overloade teardown routine
+	 */
 	teardown(){
 		Session.Output("Teardown with standard output.");
+	}
+	
+	/**
+	 * @description test to add numbers - every test must start with "test"
+	 */
+	testAddNumbers(){
+		this.eq(6, add(2, 4));
+		this.eq(6.4, add(2.4, 4));
+	}
+
+	/**
+	 * @description test to subtract numbers - every test must start with "test"
+	 */
+	testSubtractNumbers(){
+		this.eq(-2, add(2, -4)); 
+	}
+	
+	/**
+	 * @description Show to fail a test
+	 */
+	testFail(){
+		this.fail("Test has failed.");
 	}
 }
 
@@ -31,24 +63,13 @@ class MyTestSuite extends TestSuite{
 function add(a, b) {
 	return a + b;
 }
- 
- /**
+
+/**
   * @description Main function to run test
- */
+  */
 function main()
 {
-	var myTestSuite = new MyTestSuite();
-	myTestSuite.addTestSuite({
-
-   'adds numbers': function() {
-     myTestSuite.eq(6, add(2, 4));
-     myTestSuite.eq(6.4, add(2.4, 4));
-   },
-
-   'subtracts numbers': function() {
-     myTestSuite.eq(-2, add(2, -4)); 
-   }
- });
+	const myTestSuite = new MyTestSuite();
 	myTestSuite.run();
 }
 

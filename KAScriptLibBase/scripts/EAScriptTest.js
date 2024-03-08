@@ -7,61 +7,103 @@
  * @license MIT
  */
 
-
 !INC Local Scripts.EAConstants-JavaScript
 !INC EAScriptLib.JavaScript-Logging
 
-/**
- * @description Test stub class which contains setup and teardown method
- */
-class TestStub{
 
+/**
+ * @description Test suite class 
+ */
+class TestSuite {
+    
+    /**
+     * @description Constructor - class is abstract
+     */
+    constructor(){
+        if (this.constructor == TestSuite){
+            throw new Error("This class is abstract.");
+        }
+    }
+        
+    /**
+     * @description Retrieve an array of method names
+     * @return {Array} An array of method names in the implementing class and all super classes
+     */
+    getAllMethodNames(){
+        var methodClassMap = new Map();
+
+        var obj = this; 
+        while (obj = Reflect.getPrototypeOf(obj)) {
+            var methodList = new Array();
+            methodList = methodList.concat(Object.getOwnPropertyNames(obj));
+            LOGTrace("class names: " + obj.constructor.name + ", with methods: " + methodList);
+            
+            methodClassMap.set(obj.constructor.name, methodList);
+        }
+        
+        var resultList = new Array();
+        var mapEntries = methodClassMap.entries();
+        for (let [key,val] of mapEntries){
+            LOGTrace("key=" + key);
+            if (key == this.constructor.name){
+                resultList = resultList.concat(val);
+            }
+            else{
+                for (let method of val){
+                    if (!resultList.includes(method)){
+                        resultList.push(method);
+                    }
+                }
+            }
+        }
+        
+        return resultList;
+    }
+    
+    /**
+     * @description Setup routine
+     */
     setup(){
         LOGInfo("Setup of the test suite");
     }
 
+
+    /**
+     * @description Teardown routine
+     */
     teardown(){
         LOGInfo("Teardown of the test suite");
     }
-}
-
-
-/**
- * @description Struct which contains the test handler function
- */
-const EAScriptTest = {
-
+    
     /**
-     * @description Run the test
-     * @param[in] {function} tests Set of functions to test
-     */ 
-    run: function(tests) {
+     * @description run the test suite
+     */
+    run() {
         let failures = 0;
         let testCount = 0;
         
-        for (let testName in tests) {
-    
-            if (testName == "setup" || testName == "teardown"){
-                let prepareTeardown = tests[testName];
-                try{
-                    prepareTeardown();
-                }
-                catch (e){
-                    LOGError("Executing function " + testName + " has failed: ", e);
-                    LOGError("Stack trace: " + e.stack);
-                }
-            }
-            else{
-
-                let testAction = tests[testName];
-            
+        this.setup();
+                
+        var methodNames = this.getAllMethodNames();
+        LOGDebug("methods: " + methodNames);
+        
+        for (let i=0; i < methodNames.length; i++) {
+            var methodName = methodNames[i];
+            LOGDebug("method: " + methodName);
+            if (methodName.startsWith("test")){
+                
+                var fnEval = eval("this." + methodName);
+                
                 try {
-                    testAction();
-                    LOGInfo('Test:' + testName + ': OK');
+                    const testAction = Reflect.apply(fnEval, this, []);
+                    LOGInfo('Test:' + methodName + ': OK');
                 } catch (e) {
                     failures++;
-                    LOGError('Test: ' + testName + ': FAILED', e);
-                    LOGError("Stack trace: " + e.stack);
+                    LOGError('Test: ' + methodName + ': FAILED', e);
+                    LOGError("Error message: " + e.message);
+                    if (e.trace != undefined){
+                        LOGError("Errro Stack trace: " + e.trace);
+                    }
                 }
             
                 testCount++;
@@ -70,78 +112,45 @@ const EAScriptTest = {
         
         LOGInfo("Number of tests executed: " + testCount);
         LOGInfo("Number of tests failed: " + failures);
-    },
-
+        
+        this.teardown();
+    }
+    
     /**
-     * @description Fail function 
-     * @param[in] {string} msg Failure message text
-     */ 
-    fail: function(msg) {
+     * @brief Fail with a message by throwing an error
+     * @param[in] {string} msg A failure message
+     */
+    fail(msg){
         throw new Error('fail(): ' + msg);
-    },
-
+    }
+    
     /**
-     * @description check if value is true 
-     * @param[in] {value} value A value
-     * @param[in] {string} msg A message text
-     */ 
-    assert: function(value, msg) {
+     * @brief Assert a value and throw an error message, if assert is not true
+     * @param[in] {bool} value A boolean expression
+     * @param[in] {string} msg A message
+     */
+    assert(value, msg) {
         if (!value) {
             throw new Error('assert(): ' + msg);
         }
-    },
-
-    /**
-     * @description check if @ref actual is equal to @ref expected
-     * @param[in] {value} actual An actual value
-     * @param[in] {value} expected An expected value
-     */ 
-    assertEquals: function(expected, actual) {
+    }
+    
+    assertEquals(expected, actual) {
         if (expected != actual) {
             throw new Error('assertEquals() "' + expected + '" != "' + actual + '"');
         }
-    },
-
-    /**
-     * @description check if @ref actual is the same as @ref expected
-     * @param[in] {value} actual An actual value
-     * @param[in] {value} expected An expected value
-     */ 
-    assertStrictEquals: function(expected, actual) {
+    }
+    
+    assertStrictEquals(expected, actual) {
         if (expected !== actual) {
             throw new Error('assertStrictEquals() "' + expected + '" !== "' + actual + '"');
         }
-    },
+    }
+    
+    eq(expected, actual) {
+        this.assertEquals(expected, actual);
+    }
+}
 
-};
 
-/**
- * @description fail definition
- */
-const fail                = EAScriptTest.fail;
 
-/**
- *  @description assert definition
- */
-const assert              = EAScriptTest.assert;
-
-/**
- * @description assert equals definition
- */
-const assertEquals        = EAScriptTest.assertEquals;
-
-/**
- * @description eq definition (alias)
- */
-const eq                  = EAScriptTest.assertEquals;
-
-/**
- * @description assert strict definition
- */
- const assertStrictEquals  = EAScriptTest.assertStrictEquals;
-
- /**
-  * @description tests definition
-  */
- const tests               = EAScriptTest.run;
-        
