@@ -9,6 +9,9 @@ In the moment following functionality is implemented:
 
 - reading JSON configuration files
 - writing JSON files
+- a minimal unit test framework let you write test cases with assertions.
+
+Going to be implemented soon:
 - logging with timestamp and to files
 - Accessing environment variables
 - Executing queries in the model database
@@ -17,7 +20,6 @@ In the moment following functionality is implemented:
 - showing Windows dialogues
 - adding traces through connections between different flavours of requirements and between requirements and design elements
 - removing Version Control flag from packages
-- a minimal unit test framework let you write test cases with assertions.
 
 <h2>Documentation</h2>
 The code is documented with jsdoc. Therefore a special plugin has been developed to parse successfully EA flavor of Javascript.
