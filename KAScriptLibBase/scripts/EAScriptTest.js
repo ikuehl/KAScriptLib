@@ -117,17 +117,17 @@ class TestSuite {
     }
     
     /**
-     * @brief Fail with a message by throwing an error
-     * @param[in] {string} msg A failure message
+     * @description Fail with a message by throwing an error
+     * @param {string} msg A failure message
      */
     fail(msg){
         throw new Error('fail(): ' + msg);
     }
     
     /**
-     * @brief Assert a value and throw an error message, if assert is not true
-     * @param[in] {bool} value A boolean expression
-     * @param[in] {string} msg A message
+     * @description Assert a boolean value and throw an error message, if assert is not true
+     * @param {bool} value A boolean expression
+     * @param {string} msg A message
      */
     assert(value, msg) {
         if (!value) {
@@ -135,22 +135,34 @@ class TestSuite {
         }
     }
     
+    /**
+     * @description Assert that an actual value equals to an expected value and throw an error message, if assert is not true
+     * @param {Undefined} expected An expected value or object
+     * @param {Undefined} actual The actual value
+     */
     assertEquals(expected, actual) {
         if (expected != actual) {
             throw new Error('assertEquals() "' + expected + '" != "' + actual + '"');
         }
     }
     
+    /**
+     * @description Assert that an actual value equals and is identical to an expected value and throw an error message, if assert is not true
+     * @param {Undefined} expected An expected value or object
+     * @param {Undefined} actual The actual value
+     */
     assertStrictEquals(expected, actual) {
         if (expected !== actual) {
             throw new Error('assertStrictEquals() "' + expected + '" !== "' + actual + '"');
         }
     }
     
+    /**
+     * @description Assert that an actual value equals to an expected value and throw an error message, if assert is not true
+     * @param {Undefined} expected An expected value or object
+     * @param {Undefined} actual The actual value
+     */
     eq(expected, actual) {
         this.assertEquals(expected, actual);
     }
 }
-
-
-

@@ -1,14 +1,18 @@
+/**
+ * @file Test
+ * @description Playgroud to test things
+ * @author Ingmar Kuehl, KUEHL AutomatisierungsTechnologie
+ * @date 2024-02-26
+ * @license MIT
+ */
+
 !INC Local Scripts.EAConstants-JavaScript
 !INC KAScriptLib Base.FileManagement
 !INC KAScriptLib Base.ModelProcessing
-
-/*
- * Script Name: 
- * Author: 
- * Purpose: 
- * Date: 
- */
  
+ /**
+  * @description Main function to test things
+  */
 function main()
 {
 	Session.Output("START");
@@ -27,9 +31,7 @@ function main()
 	var modelProc = new ModelProcessing();
 	modelProc.findPackage(myPack, "SysML_mdg");
 	
-	Session.Output("test3");
-
-	
+	Session.Output("test3");	
 }
 
 main();

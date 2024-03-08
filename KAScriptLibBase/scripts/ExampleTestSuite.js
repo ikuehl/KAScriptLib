@@ -1,6 +1,6 @@
 /**
  * @file ExampleTestSuite
- * Example tests with the unit test framework EAScriptTest
+ * @description Example tests with the unit test framework EAScriptTest
  * @author Ingmar Kuehl, KUEHL AutomatisierungsTechnologie
  * @date 2024-03-01
  * @license MIT
@@ -13,6 +13,10 @@
  * @description An example stub for preparation and teardown methods
  */
 class MyTestSuite extends TestSuite{
+	
+	/**
+	 * @description Default constructor
+	 */
 	constructor(){
 		super();
 	}
@@ -33,14 +37,28 @@ class MyTestSuite extends TestSuite{
 	
 	/**
 	 * @description test to add numbers - every test must start with "test"
+	 * @see add
 	 */
 	testAddNumbers(){
 		this.eq(6, add(2, 4));
 		this.eq(6.4, add(2.4, 4));
 	}
+	
+	/**
+	 * @description test to multiply numbers - every test must start with "test"
+	 * @see mul
+	 */
+	testMultiply(){
+		this.assertEquals(24, mul(6,4));
+		this.assert(42 == mul(2,21));
+		var a = "24";
+		var b = mul(6,4);
+		this.assertStrictEquals(a,b);
+	}
 
 	/**
 	 * @description test to subtract numbers - every test must start with "test"
+	 * @see add
 	 */
 	testSubtractNumbers(){
 		this.eq(-2, add(2, -4)); 
@@ -56,12 +74,22 @@ class MyTestSuite extends TestSuite{
 
 /**
  * @description Example function to add two numbers
- * @param[in] {number} a A number
- * @param[in] {number} b A number
- * @return {number} The sum of @see {@link a} and @see {@link b}
+ * @param {Number} a A number
+ * @param {Number} b A number
+ * @return {Number} The sum of a and b
 */
 function add(a, b) {
 	return a + b;
+}
+
+/**
+ * @description Example function to multiply two numbers
+ * @param {Number} a A number
+ * @param {Number} b A number
+ * @return {Number} The product of a and b
+*/
+function mul(a, b){
+	return a*b;
 }
 
 /**
