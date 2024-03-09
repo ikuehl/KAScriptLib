@@ -9,11 +9,11 @@ In the moment following functionality is implemented:
 
 - reading JSON configuration files
 - writing JSON files
+- accessing environment variables
 - a minimal unit test framework let you write test cases with assertions.
 
 Going to be implemented soon:
 - logging with timestamp and to files
-- Accessing environment variables
 - Executing queries in the model database
 - parsing recursively model trees
 - parsing DOM trees as a result of database query
