@@ -3,6 +3,7 @@
  * @description Accessing the Environment variables (e.g. for config files)
  * @author Ingmar Kuehl, KUEHL AutomatisierungsTechnologie
  * @date 2024-02-21
+ * @license MIT
  */
  
  !INC Local Scripts.EAConstants-JavaScript
