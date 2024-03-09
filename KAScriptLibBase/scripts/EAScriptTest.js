@@ -126,8 +126,8 @@ class TestSuite {
     
     /**
      * @description Assert a boolean value and throw an error message, if assert is not true
-     * @param {bool} value A boolean expression
-     * @param {string} msg A message
+     * @param {Boolean} value A boolean expression
+     * @param {String} msg A message
      */
     assert(value, msg) {
         if (!value) {
