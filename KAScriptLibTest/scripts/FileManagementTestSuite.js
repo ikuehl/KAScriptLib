@@ -70,9 +70,9 @@ class TestSuiteFileManagement extends TestSuite{
 		var file = this.fMan.readFile(this.cfgFile.test.dir + "\\" + this.cfgFile.test.file);
 		
 		this.assert(file != null, "Read has failed.");
-		this.assert(file.date != null, "Tage date does not exist.");
-		this.assert(file.vcRes != null, "Tage vcRes does not exist.");
-		this.assert(file.startingPackage != null, "Tage startingPackage does not exist.");		
+		this.assert(file.date != null, "Tag date does not exist.");
+		this.assert(file.vcRes != null, "Tag vcRes does not exist.");
+		this.assert(file.startingPackage != null, "Tag startingPackage does not exist.");		
 	}
 }
 	
