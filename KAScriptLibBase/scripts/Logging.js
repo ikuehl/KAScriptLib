@@ -28,6 +28,7 @@
 
 !INC Local Scripts.EAConstants-JavaScript
 !INC KAScriptLib Base.FileManagement
+!INC KAScriptLib Base.EnvironmentAccess
 
 
 // LOGLEVEL values
@@ -63,15 +64,40 @@ var LOGLEVEL_DEBUG = 3;
 var LOGLEVEL_TRACE = 4;
 
 /**
-	* @type {Number}
-	* @description The level to log at
-	*/
-var LOGLEVEL = LOGLEVEL_INFO;
-
-/**
-	* @description Logging class
-	*/
+ * @class Logger
+ * @description Provides logging methods for console and file output
+ */
 class Logger {
+	
+	/**
+	 * @function isConsoleLogger
+	 * @description Checks whether in the config file logging is defined for console output
+	 * @return {Boolean} True, if console output
+	 */
+	isConsoleLogger(){
+		return this.cfgFile.logtype == "console";
+	}
+
+	/**
+	 * @function isFileLogger
+	 * @description Checks whether in the config file logging is defined for file output
+	 * @return {Boolean} True, if file output
+	 */	
+	isFileLogger(){
+		return this.cfgFile.logtype == "file";
+	}
+	
+		
+	/**
+	 * @constructor
+	 * @description Default constructor, initiate file management and read config file
+	 */
+	constructor(){
+		this.LOGLEVEL = LOGLEVEL_INFO;
+		var evAccess = new EnvironmentAccess();
+		this.fMan = new FileManagement();
+		this.cfgFile = this.fMan.readFile(evAccess.getConfigLog());
+	}
 
 	/**
 		* @function LOGError
@@ -80,9 +106,15 @@ class Logger {
 		*
 		* @param {String} message The message to log
 		*/
-	LOGError(message) {
-		if (LOGLEVEL >= LOGLEVEL_ERROR) {
-			Session.Output(_LOGGetDisplayDate() + " [ERROR]: " + message);
+	 LOGError(message) {
+		if (this.LOGLEVEL >= LOGLEVEL_ERROR) {
+			if (this.isConsoleLogger()){
+				Session.Output(this._LOGGetDisplayDate() + " [ERROR]: " + message);
+			}
+			else
+			if (this.isFileLogger()){
+				this.fMan.writeTextFile(this.cfgFile.file.directory + "\\" + this.cfgFile.file.logfile, this._LOGGetDisplayDate() + " [ERROR]: " + message);
+			}
 		}
 	}
 
@@ -93,60 +125,85 @@ class Logger {
 		*
 		* @param {String} message The message to log
 		*/
-	LOGInfo(message) {
-		if (LOGLEVEL >= LOGLEVEL_INFO) {
-			Session.Output(_LOGGetDisplayDate() + " [INFO]: " + message);
+	 LOGInfo(message) {
+		if (this.LOGLEVEL >= LOGLEVEL_INFO) {
+			if (this.isConsoleLogger()){
+				Session.Output(this._LOGGetDisplayDate() + " [INFO]: " + message);
+			}
+			else
+			if (this.isFileLogger()){
+				this.fMan.writeTextFile(this.cfgFile.file.directory + "\\" + this.cfgFile.file.logfile, this._LOGGetDisplayDate() + " [INFO]: " + message);
+			}
+
 		}
 	}
 
 	/**
-		* @function LOGWarning
+		* @function
 		* @description Logs a message at the WARNING level. The message will be displayed if LOGLEVEL is set to 
 		* LOGLEVEL_WARNING or above.
 		*
 		* @param {String} message The message to log
 		*/
-	LOGWarning(message) {
-		if (LOGLEVEL >= LOGLEVEL_WARNING) {
-			Session.Output(_LOGGetDisplayDate() + " [WARNING]: " + message);
+	 LOGWarning(message) {
+		if (this.LOGLEVEL >= LOGLEVEL_WARNING) {
+			if (this.isConsoleLogger()){
+				Session.Output(this._LOGGetDisplayDate() + " [WARNING]: " + message);
+			}
+			else
+			if (this.isFileLogger()){
+				this.fMan.writeTextFile(this.cfgFile.file.directory + "\\" + this.cfgFile.file.logfile, this._LOGGetDisplayDate() + " [WARNING]: " + message);
+			}
 		}
 	}
 
 	/**
-		* @function LOGDebug
+		* @function
 		* @description 
 		* Logs a message at the DEBUG level. The message will be displayed if LOGLEVEL is set to 
 		* LOGLEVEL_DEBUG or above.
 		*
 		* @param {String} message The message to log
 		*/
-	LOGDebug(message) {
-		if (LOGLEVEL >= LOGLEVEL_DEBUG) {
-			Session.Output(_LOGGetDisplayDate() + " [DEBUG]: " + message);
+	 LOGDebug(message) {
+		if (this.LOGLEVEL >= LOGLEVEL_DEBUG) {
+			if (this.isConsoleLogger()){
+				Session.Output(this._LOGGetDisplayDate() + " [DEBUG]: " + message);
+			}
+			else
+			if (this.isFileLogger()){
+				this.fMan.writeTextFile(this.cfgFile.file.directory + "\\" + this.cfgFile.file.logfile, this._LOGGetDisplayDate() + " [DEBUG]: " + message);
+			}
 		}
 	}
 
 	/**
-		* @function LOGTrace
+		* @function
 		* @description Logs a message at the TRACE level. The message will be displayed if LOGLEVEL is set to 
 		* LOGLEVEL_TRACE or above.
 		*
 		* @param {String} message The message to log
 		*/
-	LOGTrace(message) {
-		if (LOGLEVEL >= LOGLEVEL_TRACE) {
-			Session.Output(_LOGGetDisplayDate() + " [TRACE]: " + message);
+	 LOGTrace(message) {
+		if (this.LOGLEVEL >= LOGLEVEL_TRACE) {
+			if (this.isConsoleLogger()){
+				Session.Output(this._LOGGetDisplayDate() + " [TRACE]: " + message);
+			}
+			else
+			if (this.isFileLogger()){
+				this.fMan.writeTextFile(this.cfgFile.file.directory + "\\" + this.cfgFile.file.logfile, this._LOGGetDisplayDate() + " [TRACE]: " + message);
+			}
 		}
 	}
 
 	/**
-		* @function _LOGGetDisplayDate
+		* @function 
 		* @description Returns the current date/time in a format suitable for logging.
 		*
 		* @return {String} A String representing the current date/time
 		* @private
 		*/
-	_LOGGetDisplayDate() {
+	 _LOGGetDisplayDate() {
 		var now = new Date();
 
 		// Pad hour value

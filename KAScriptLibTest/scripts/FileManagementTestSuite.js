@@ -39,7 +39,7 @@ class TestSuiteFileManagement extends TestSuite{
 	}
 		
 	/**
-	 * @file
+	 * @function
 	 * @description Overloade teardown routine
 	 */
 	teardown(){

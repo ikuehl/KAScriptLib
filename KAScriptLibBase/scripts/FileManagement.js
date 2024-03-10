@@ -67,8 +67,30 @@ class FileManagement {
 		outFile.Close();
 	}
 	
+	writeTextFile(filePath, text){
+		var existingText = "";
+		
+		if (this.fileExists(filePath)){
+			var fsObject = new COMObject("Scripting.FileSystemObject");
+			var file = fsObject.GetFile(filePath);
+			var inputStream = file.OpenAsTextStream(_Win32Import_FSREAD, 0);
+
+			while (!inputStream.AtEndOfStream) {
+				existingText = inputStream.ReadAll();
+			}
+			inputStream.Close();
+		}
+		
+		existingText += text;
+		
+		var fsObject = new COMObject("Scripting.FileSystemObject");
+		var outFile = fsObject.CreateTextFile(filePath, true);
+		outFile.WriteLine(existingText);
+		outFile.Close();
+	}
+	
 	/**
-	 * @function fileExist
+	 * @function fileExists
 	 * @description Check if file exist
 	 * @param {String} filename The absolute path to the file
 	 * 
