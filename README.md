@@ -2,7 +2,7 @@
 There have been already some scripting libraries for Enterprise Architect lift up to the air, but a thoroughful engineered Javascript library is not available. This library provides a set of Javascripts to process Enterprise Architect models. The library is implemented to process UML and SysML models, but should be usable as well for other model languages, like Archimate or BPMN.
 
 <h2>Compatability</h2>
-The code is tested with EA 15.2 and 16.1. It runs in a local, file-based deployment and with a database (PostgreSQL) in ProCloud.
+The code is tested with EA 15.2 and 16.1. It runs in a local, file-based deployment and with a database (PostgreSQL).
 
 <h2>Functionality</h2>
 In the moment following functionality is implemented:
