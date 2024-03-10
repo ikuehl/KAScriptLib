@@ -3,11 +3,8 @@ There have been already some scripting libraries for Enterprise Architect lift u
 
 <h2>License</h2>
 The code is licensed under MIT. Feel free to use it, to change it, to fork it. If you need consultancy to utilize the library in your projects please contact me: 
-<kontakt@kuehl-at.com>.
 
-<https://www.markdownguide.org>
-<fake@example.com>
-<kontakt@kuehl-at.com>
+<kontakt@kuehl-at.com>.
 
 <h2>Compatability</h2>
 The code is tested with EA 15.2 and 16.1. It runs in a local, file-based deployment and with a database (PostgreSQL).
