@@ -7,7 +7,6 @@
  */
  
 !INC Local Scripts.EAConstants-JavaScript
-!INC EAScriptLib.JavaScript-Logging
 
 /**
  * @type Read
@@ -20,10 +19,11 @@ var _Win32Import_FSREAD = 1;
 class FileManagement {
 
 	/**
-	* @description Read a file and return the corresponding JSON object
-	* @param {String} filePath The absolute path to a JSON file
-	* @return {Object} A JSON object
-	*/
+	 * @function readFile
+	 * @description Read a file and return the corresponding JSON object
+	 * @param {String} filePath The absolute path to a JSON file
+	 * @return {Object} A JSON object
+	 */
 	readFile(filePath) {
 		// Open the provided file
 		var fsObject = new COMObject("Scripting.FileSystemObject");
@@ -42,10 +42,11 @@ class FileManagement {
 	}
 
 	/**
-	* @brief Write an array to a JSON file. Pretach a generated timestamp.
-	* @param {String} filePath Absolute file name path for output generation
-	* @param {Object} argMap Map of ids and values to write. E.g. [{"startingPackage", EA.Package}, {"vcRes", Array}] 
-	*/
+	 * @function writeFile
+	 * @description Write an array to a JSON file. Pretach a generated timestamp.
+	 * @param {String} filePath Absolute file name path for output generation
+	 * @param {Object} argMap Map of ids and values to write. E.g. [{"startingPackage", EA.Package}, {"vcRes", Array}] 
+	 */
 	writeFile(filePath, argMap) {
 		var fsObject = new COMObject("Scripting.FileSystemObject");
 		var outFile = fsObject.CreateTextFile(filePath, true);
@@ -64,5 +65,18 @@ class FileManagement {
 		
 		outFile.WriteLine(serialized);
 		outFile.Close();
+	}
+	
+	/**
+	 * @function fileExist
+	 * @description Check if file exist
+	 * @param {String} filename The absolute path to the file
+	 * 
+	 */
+	fileExists(filename){
+		var fsObject = new COMObject("Scripting.FileSystemObject");
+		var fileExist = fsObject.FileExists(filename);
+		
+		return fileExist;
 	}
 }
