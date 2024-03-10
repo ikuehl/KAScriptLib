@@ -15,6 +15,7 @@ In the moment following functionality is implemented:
 
 
 Going to be implemented soon:
+- syncing scripts from file system to EA and database
 - Executing queries in the model database
 - parsing recursively model trees
 - parsing DOM trees as a result of database query
