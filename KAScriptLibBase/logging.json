@@ -2,6 +2,7 @@
 	"logtype": "file",
 	"file":{
 		"directory": "%EA_Script%",
+		"sub_directory": "log",
 		"logfile": "logging.log"
 	}
 }
