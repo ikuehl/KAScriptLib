@@ -4,3 +4,4 @@ scripts/out/*
 !documentation/jsdoc.json
 !logging.json
 *.pdf
+log/*
