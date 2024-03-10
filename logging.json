@@ -1,0 +1,7 @@
+{
+	"logtype": "console",
+	"file":{
+		"directory": "C:\\Work\\EATools\\KAScriptLib\\log",
+		"logfile": "logging.log"
+	}
+}

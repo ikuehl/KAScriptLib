@@ -1,5 +1,6 @@
 out/*
 scripts/out/*
 *.json
-!KAScriptLibBase/documentation/jsdoc.json
+!documentation/jsdoc.json
+!logging.json
 *.pdf
