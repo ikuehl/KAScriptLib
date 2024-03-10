@@ -87,6 +87,13 @@ class Logger {
 		return this.cfgFile.logtype == "file";
 	}
 	
+	getLogPath(){
+		var path = this.evAccess.getValueForEV(this.cfgFile.file.directory) + "\\" + this.cfgFile.file.sub_directory + "\\" + this.cfgFile.file.logfile;
+		Session.Output("path=" + path);
+		
+		return path;
+	}
+	
 		
 	/**
 	 * @constructor
@@ -94,9 +101,9 @@ class Logger {
 	 */
 	constructor(){
 		this.LOGLEVEL = LOGLEVEL_INFO;
-		var evAccess = new EnvironmentAccess();
+		this.evAccess = new EnvironmentAccess();
 		this.fMan = new FileManagement();
-		this.cfgFile = this.fMan.readFile(evAccess.getConfigLog());
+		this.cfgFile = this.fMan.readFile(this.evAccess.getConfigLog());
 	}
 
 	/**
@@ -113,7 +120,7 @@ class Logger {
 			}
 			else
 			if (this.isFileLogger()){
-				this.fMan.writeTextFile(this.cfgFile.file.directory + "\\" + this.cfgFile.file.logfile, this._LOGGetDisplayDate() + " [ERROR]: " + message);
+				this.fMan.writeTextFile(this.getLogPath(), this._LOGGetDisplayDate() + " [ERROR]: " + message);
 			}
 		}
 	}
@@ -132,7 +139,7 @@ class Logger {
 			}
 			else
 			if (this.isFileLogger()){
-				this.fMan.writeTextFile(this.cfgFile.file.directory + "\\" + this.cfgFile.file.logfile, this._LOGGetDisplayDate() + " [INFO]: " + message);
+				this.fMan.writeTextFile(this.getLogPath(), this._LOGGetDisplayDate() + " [INFO]: " + message);
 			}
 
 		}
@@ -152,7 +159,7 @@ class Logger {
 			}
 			else
 			if (this.isFileLogger()){
-				this.fMan.writeTextFile(this.cfgFile.file.directory + "\\" + this.cfgFile.file.logfile, this._LOGGetDisplayDate() + " [WARNING]: " + message);
+				this.fMan.writeTextFile(this.getLogPath(), this._LOGGetDisplayDate() + " [WARNING]: " + message);
 			}
 		}
 	}
@@ -172,7 +179,7 @@ class Logger {
 			}
 			else
 			if (this.isFileLogger()){
-				this.fMan.writeTextFile(this.cfgFile.file.directory + "\\" + this.cfgFile.file.logfile, this._LOGGetDisplayDate() + " [DEBUG]: " + message);
+				this.fMan.writeTextFile(this.getLogPath(), this._LOGGetDisplayDate() + " [DEBUG]: " + message);
 			}
 		}
 	}
@@ -191,7 +198,7 @@ class Logger {
 			}
 			else
 			if (this.isFileLogger()){
-				this.fMan.writeTextFile(this.cfgFile.file.directory + "\\" + this.cfgFile.file.logfile, this._LOGGetDisplayDate() + " [TRACE]: " + message);
+				this.fMan.writeTextFile(this.getLogPath(), this._LOGGetDisplayDate() + " [TRACE]: " + message);
 			}
 		}
 	}
