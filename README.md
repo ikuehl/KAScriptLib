@@ -34,5 +34,6 @@ The code is documented with jsdoc. Therefore a special plugin has been developed
 <h2>Environment variables</h2>
 In the moment two environment variables are used:
 
+- *EA_Script* which defines the root folder of the KAScriptLib
 - *EA_Log* which defines an absolute path to the logging config file, e.g. "your-path-to-the-cfg-file"\logging.json
 - *EA_Test* which defines an absolute path to the config file used throughout the unit tests, e.g. "your-path-to-the-unit-test-cfg-file"\unitTest.json.
