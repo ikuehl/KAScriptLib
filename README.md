@@ -30,3 +30,8 @@ Going to be implemented soon:
 
 <h2>Documentation</h2>
 The code is documented with jsdoc. Therefore a special plugin has been developed to parse successfully EA flavor of Javascript.
+
+<h2>Environment variables</h2>
+In the moment two environment variables are used:
+- EA_Log which defines an absolute path to the logging config file, e.g. C:\"your-path-to-the-cfg-file"\logging.json
+- EA_Test which defines an absolute path to the config file used throughout the unit tests, e.g. C:\"your-path-to-the-unit-test-cfg-file"\unitTest.json.
