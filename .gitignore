@@ -3,5 +3,6 @@ scripts/out/*
 *.json
 !documentation/jsdoc.json
 !logging.json
+!unitTest.json
 *.pdf
 log/*

@@ -1,5 +1,5 @@
 {
-	"logtype": "file",
+	"logtype": "console",
 	"file":{
 		"directory": "%EA_Script%",
 		"sub_directory": "log",

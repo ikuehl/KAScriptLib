@@ -26,8 +26,8 @@ class TestSuiteFileManagement extends TestSuite{
 	constructor(){
 		super();
 		this.fMan = new FileManagement();
-		var evAccess = new EnvironmentAccess();
-		this.cfgFile = this.fMan.readFile(evAccess.getValueForEV("%EA_Test%"));
+		this.evAccess = new EnvironmentAccess();
+		this.cfgFile = this.fMan.readFile(this.evAccess.getValueForEV("%EA_Test%"));
 	}
 	
 	/**
@@ -35,7 +35,7 @@ class TestSuiteFileManagement extends TestSuite{
 	 * @description Overloaded Setup routine 
 	 */
 	setup(){
-		var myPack = Repository.Models.GetByName(this.cfgFile.package);
+		var myPack = Repository.Models.GetByName(this.evAccess.getValueForEV(this.cfgFile.package));
 		var myArr = ["1", "2", "3"];
 		this.myMap = new Map([
 			["startingPackage", myPack.Name],
@@ -58,8 +58,8 @@ class TestSuiteFileManagement extends TestSuite{
 	 * @description test to write a file - every test must start with "test"
 	 */
 	testWriteFile(){
-		this.fMan.writeFile(this.cfgFile.test.dir + "\\" + this.cfgFile.test.file, this.myMap);
-		this.assert(this.fMan.fileExists(this.cfgFile.test.dir + "\\" + this.cfgFile.test.file));
+		this.fMan.writeFile(this.evAccess.getValueForEV(this.cfgFile.test.dir) + "\\" + this.cfgFile.test.file, this.myMap);
+		this.assert(this.fMan.fileExists(this.evAccess.getValueForEV(this.cfgFile.test.dir) + "\\" + this.cfgFile.test.file));
 	}
 
 	/**
@@ -67,7 +67,7 @@ class TestSuiteFileManagement extends TestSuite{
 	 * @description test to read a file - every test must start with "test"
 	 */	
 	testReadFile(){
-		var file = this.fMan.readFile(this.cfgFile.test.dir + "\\" + this.cfgFile.test.file);
+		var file = this.fMan.readFile(this.evAccess.getValueForEV(this.cfgFile.test.dir) + "\\" + this.cfgFile.test.file);
 		
 		this.assert(file != null, "Read has failed.");
 		this.assert(file.date != null, "Tag date does not exist.");

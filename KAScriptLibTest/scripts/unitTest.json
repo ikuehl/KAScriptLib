@@ -1,0 +1,8 @@
+{
+	"package": "Model",
+	"test": {
+		"dir": "%EA_Script%",
+		"file": "test.json"
+
+	}
+}
