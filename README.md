@@ -14,6 +14,7 @@ In the moment following functionality is implemented:
 
 - reading JSON configuration files
 - writing JSON files
+- writing text files
 - accessing environment variables
 - a minimal unit test framework let you write test cases with assertions
 - logging with timestamp and to files.
