@@ -1,4 +1,4 @@
-**
+/**
  * @file EnvironmentAccess
  * @description Accessing the Environment variables (e.g. for config files)
  * @author Ingmar Kuehl, KUEHL AutomatisierungsTechnologie
@@ -9,9 +9,16 @@
  !INC Local Scripts.EAConstants-JavaScript
 
 /**
- * @type Environment variable for config path
+ * @type {String}
+ * @description Environment variable for config path
  */
-const ConfigEV = "%EA_Script%";
+const ConfigEAScript = "%EA_Script%";
+
+/**
+ * @type {String}
+ * @description Environment variable for config path
+ */
+const ConfigLog= "%EA_Log%";
 
 /**
  * @description Defines methods to access environment variables
@@ -19,11 +26,11 @@ const ConfigEV = "%EA_Script%";
 class EnvironmentAccess{
 
 	/**
-	 * @description Retrieve the value of an environment variables
+	 * @description Retrieve the value of an environment variables - this method is for unknown environment variables
 	 * @param {String} evName environment variable name
 	 * @return {String} value of the environment variable
 	 */
-	getValueforEV(evName){
+	getValueForEV(evName){
 		var wshShell = new COMObject("WScript.Shell");
 		var pathValue = wshShell.ExpandEnvironmentStrings(evName);
 
@@ -34,8 +41,17 @@ class EnvironmentAccess{
  	* @description Retrieve the absolute config file path
  	* @return {String} The absolute config file path
  	*/
-	getConfigPath(){
-		return getValueForEV(ConfigEV);
+	getConfigBasePath(){
+		return this.getValueForEV(ConfigEV);
 	}
+	
+	/**
+ 	* @description Retrieve the absolute config file path
+ 	* @return {String} The absolute config file path
+ 	*/
+	getConfigLog(){
+		return this.getValueForEV(ConfigLog);
+	}
+
 
 }
