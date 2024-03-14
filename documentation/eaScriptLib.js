@@ -3,7 +3,7 @@
  * This plugin removes the !INC statements and as for var from Enterprise Architect Javascript files. 
  * Otherwise the jsdoc parser will not parse successfully the source files.
  * @module plugins/eaScriptLib
- * @note For debuggin uncomment console.log command lines
+ * @note For debugging uncomment console.log command lines
  */
 exports.handlers = {
     beforeParse(e) {
@@ -15,7 +15,7 @@ exports.handlers = {
         if (include) {
 	    for (let i=0; i < include.length; i++){
 	        //console.log("item: " + include[i] + " is going to be removed.");
-		e.source = e.source.replace(include[i], '');
+			e.source = e.source.replace(include[i], '');
 	    }	    
         }
 
@@ -26,7 +26,7 @@ exports.handlers = {
         if (as) {
 	    for (let i=0; i < as.length; i++){
 	        //console.log("item: " + as[i] + " is going to be removed.");
-		e.source = e.source.replace(as[i], '');
+			e.source = e.source.replace(as[i], '');
 	    }	    
         }
 
