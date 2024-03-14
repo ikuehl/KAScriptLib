@@ -13,10 +13,10 @@ exports.handlers = {
 	//console.log("Include: " + include);
 
         if (include) {
-	    for (let i=0; i < include.length; i++){
-	        //console.log("item: " + include[i] + " is going to be removed.");
-			e.source = e.source.replace(include[i], '');
-	    }	    
+	    	for (let i=0; i < include.length; i++){
+	        	//console.log("item: " + include[i] + " is going to be removed.");
+				e.source = e.source.replace(include[i], '');
+	    	}	    
         }
 
 	// remove as for var
@@ -24,13 +24,13 @@ exports.handlers = {
 	//console.log("as: " + as);
 
         if (as) {
-	    for (let i=0; i < as.length; i++){
-	        //console.log("item: " + as[i] + " is going to be removed.");
-			e.source = e.source.replace(as[i], '');
-	    }	    
+	    	for (let i=0; i < as.length; i++){
+	        	//console.log("item: " + as[i] + " is going to be removed.");
+				e.source = e.source.replace(as[i], '');
+	    	}	    
         }
 
-	//console.log(e.source);
+		//console.log(e.source);
     }
 };
 
